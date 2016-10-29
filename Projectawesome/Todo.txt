@@ -1,0 +1,47 @@
+Project Awesome
+
+
+What we want to do
+A: Make a cookie clicker game
+
+OBJECTIVE
+1.Objective of the game is to click on the pokemon to defeat it and gain rewards per pokemon that has been defeated.
+2.With the rewards, we can purchase upgrades and/or hire other entities to help defeat stronger pokemons
+3.OPTIONAL OBJECTIVE~Every certain amount of pokemon defeated will spawn a BOSS pokemon to defeat for greater reward, HOWEVER, there is a time limit to defeat it.
+    - Condition: If defeated, next level
+            Else: If not defeated, restart from 1st pokemon from current level (You do not lose anything or may)
+                - Players may skip and go straight to the BOSS pokemon when they are ready but this condition is only available if they were defeated.
+
+THINGS TO KNOW:
+- Logarithmics Exponentials (algrebra)
+    example: x = x * 1.5 per pokemon
+- The amount of damage we do to the pokemon plus the upgrades and other entities that assist in subtracting the value of the pokemon's damage value.
+
+
+
+CONCEPT
+
+1st pokemon will start with 10HP and you must click the pokemon to subtract that HP value until HP is (HP <= 0)
+2nd pokemon will start with 1st pokemonHP + (some expontial value) and same conditions as above and so on.
+
+
+Damage value for clicking on the pokemon is 1
+Upgrades can increase Damage value per click (example 1st upgrade adds 1 making each click equal 2 instead of 1)
+Hired Entities increase Damage value over time 
+
+THINGS WE NEED
+1. Pokemons with names to click on
+
+
+THINGS TO DO
+1. Make object clickable to reduce HP of pokemon
+2. Make pokemon disappear when HP value conditions are met
+3. Create new pokemon to click on and so on (repeat 1 and 2)
+
+
+~~~~~~
+
+For every pokemon defeated, we get points. But how many points?
+
+
+
