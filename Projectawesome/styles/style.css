@@ -6,3 +6,8 @@ body
 p {
     color:white;
 }
+
+.inline {
+	display: inline-block;
+	width: 40%;
+}
