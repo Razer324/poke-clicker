@@ -9,25 +9,16 @@ var upgrade = false;
 var upgradeLock = false;
 var normalPokemon = true;
 var bossPokemon = false;
+var image = document.getElementById('image'); // I
+var displayHP = document.getElementById('currentHP'); // Cleaned up
+var displayScore = document.getElementById('score'); // The Code
 
-document.getElementById('image').setAttribute('src', pokemonArray[0]);
-document.getElementById("currentHP").textContent = currentHP;
+image.setAttribute('src', pokemonArray[0]);
+displayHP.textContent = currentHP;
 
-document.getElementById("image").addEventListener("click", function(){
-    attackPokemon();
-});
+image.addEventListener('click', attackPokemon);
 
-document.getElementById("upgrade").addEventListener("click", function(){
-    if (score >= 50 && upgradeLock === false) {
-        score -= 50;
-        upgrade = true;
-        upgradeLock = true;
-        document.getElementById('score').textContent = score;
-    }
-    else {
-        upgrade = false;
-    }
-});
+document.getElementById("upgrade").addEventListener("click", setUpgrade);
 
 function attackPokemon() {
     if (upgrade) {
@@ -59,33 +50,44 @@ function actionMadeToPokemon() {
             nextPokemon();
         }
     }
-    document.getElementById("currentHP").textContent = currentHP;
+    displayHP.textContent = currentHP;
 }
 
 function nextPokemon() {
-    //newHP += 1; // Uncomment this once the code is working as intended
+    //newHP += 1; // Uncomment this once the code is working as intended !!!
+    //currentHP = newHP; // Uncomment this as well to update the newHP value !!! (May or may be broken again)
+    image.setAttribute("src", pokemonArray[arrayItr]);
     if (arrayItr == 10) {
         console.log("Boss Defeated! Next Pokemon!");
-        currentHP = newHP;
         arrayItr = 0;
-        document.getElementById("image").setAttribute("src", pokemonArray[arrayItr]);
+        image.setAttribute("src", pokemonArray[arrayItr]);
     }
     if (arrayItr == 9) {
         console.log("Boss Appears");
-        document.getElementById("image").setAttribute("src", pokemonArray[arrayItr]);
         currentHP = (10 + newHP);
-        document.getElementById("currentHP").textContent = currentHP;
+        displayHP.textContent = currentHP;
         bossPokemon = true;
         return;
     }
     else {
         console.log(arrayItr);
-        document.getElementById("image").setAttribute("src", pokemonArray[arrayItr]);
         normalPokemon = true;
     }
 }
 
 function addScore(score2) {
     score += score2;
-    document.getElementById('score').textContent = score;
+    displayScore.textContent = score;
+}
+
+function setUpgrade() {
+        if (score >= 50 && upgradeLock === false) {
+        score -= 50;
+        upgrade = true;
+        upgradeLock = true;
+        displayScore.textContent = score;
+    }
+    else {
+        upgrade = false;
+    }
 }
