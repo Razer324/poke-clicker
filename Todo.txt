@@ -1,0 +1,15 @@
+Project Awesome
+
+
+What we want to do
+A: Make a cookie clicker game
+
+OBJECTIVE
+1.Objective of the game is to click on the pokemon to defeat it and gain rewards per pokemon that has been defeated.
+2.With the rewards, we can purchase upgrades and/or hire other entities to help defeat stronger pokemons
+3.OPTIONAL OBJECTIVE~Every certain amount of pokemon defeated will spawn a BOSS pokemon to defeat for greater reward, HOWEVER, there is a time limit to defeat it.
+    - Condition: If defeated, next level
+            Else: If not defeated, restart from 1st pokemon from current level (You do not lose anything or may)
+                - Players may skip and go straight to the BOSS pokemon when they are ready but this condition is only available if they were defeated.
+
+

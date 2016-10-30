@@ -1,0 +1,13 @@
+body
+{
+    background-color:black;
+}
+
+p {
+    color:white;
+}
+
+.inline {
+	display: inline-block;
+	width: 40%;
+}
