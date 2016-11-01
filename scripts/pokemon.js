@@ -1,17 +1,17 @@
 var pokemonArray = [
-  {name: "Aerodactyl", path: "images/aerodactyl.png"},
-  {name: "Alakazam", path: "images/alakazam.png"},
-  {name: "Gyarados", path: "images/gyarados.png"},
-  {name: "Kabutops", path: "images/kabutops.png"},
-  {name: "Kangaskhan", path: "images/kangaskhan.png"},
-  {name: "Machamp", path: "images/machamp.png"},
-  {name: "Onix", path: "images/onix.png"},
-  {name: "Rhydon", path: "images/rhydon.png"},
-  {name: "Tauros", path: "images/tauros.png"}
+  {name: 'Aerodactyl', path: 'images/aerodactyl.png'},
+  {name: 'Alakazam', path: 'images/alakazam.png'},
+  {name: 'Gyarados', path: 'images/gyarados.png'},
+  {name: 'Kabutops', path: 'images/kabutops.png'},
+  {name: 'Kangaskhan', path: 'images/kangaskhan.png'},
+  {name: 'Machamp', path: 'images/machamp.png'},
+  {name: 'Onix', path: 'images/onix.png'},
+  {name: 'Rhydon', path: 'images/rhydon.png'},
+  {name: 'Tauros', path: 'images/tauros.png'}
 ]
 
 var bossArray = [
-  {name: "Lugia", path: "images/lugia.png"}
+  {name: 'Lugia', path: 'images/lugia.png'}
 ]
 
 var increasePoke = 0;
@@ -23,16 +23,18 @@ var upgrade = false;
 var normalPokemon = true;
 var bossPokemon = false;
 var image = document.getElementById('image');
+var pokeName = document.getElementById('pokeName');
 var displayHP = document.getElementById('currentHP');
 var displayScore = document.getElementById('score');
 var random = Math.floor(Math.random() * pokemonArray.length);
 
 image.setAttribute('src', pokemonArray[random].path);
+pokeName.textContent = pokemonArray[random].name;
 displayHP.textContent = 'Health: ' + currentHP;
 
 image.addEventListener('click', attackPokemon);
 
-document.getElementById("upgrade").addEventListener("click", setUpgrade);
+document.getElementById('upgrade').addEventListener('click', setUpgrade);
 
 function attackPokemon() {
   if (upgrade) {
@@ -47,12 +49,12 @@ function attackPokemon() {
 function actionMadeToPokemon() {
   if (currentHP <= 0) {
     if (normalPokemon === true) {
-      console.log("Pokemon Defeat! Next Pokemon!");
+      console.log('Pokemon Defeat! Next Pokemon!');
       addScore(10);
       normalPokemon = false;
     }
     if (bossPokemon === true) {
-      console.log("Boss Defeated! Next Pokemon!");
+      console.log('Boss Defeated! Next Pokemon!');
       addScore(110);
       bossPokemon = false;
       actionMadeToPokemon();
@@ -72,8 +74,9 @@ function nextPokemon() {
   //currentHP = newHP; // Uncomment this as well to update the newHP value !!! (May or may be broken again)
   if (totalPoke == increasePoke - 1) {
     var randomBoss = Math.floor(Math.random() * bossArray.length);
-    image.setAttribute("src", bossArray[randomBoss].path);
-    console.log("Boss Appears");
+    image.setAttribute('src', bossArray[randomBoss].path);
+    pokeName.textContent = bossArray[randomBoss].name;
+    console.log('Boss Appears');
     totalPoke = increasePoke;
     increasePoke = 0;
     currentHP = (10 + newHP);
@@ -82,7 +85,8 @@ function nextPokemon() {
     return;
   } else {
     var random = Math.floor(Math.random() * pokemonArray.length);
-    image.setAttribute("src", pokemonArray[random].path);
+    image.setAttribute('src', pokemonArray[random].path);
+    pokeName.textContent = pokemonArray[random].name;
     normalPokemon = true;
   }
 }
