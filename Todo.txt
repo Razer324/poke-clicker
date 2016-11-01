@@ -1,8 +1,8 @@
 Project Awesome
 
 
-What we want to do
-A: Make a cookie clicker game
+Q: What we want to do?
+A: Make a cookie clicker game.
 
 OBJECTIVE
 1.Objective of the game is to click on the pokemon to defeat it and gain rewards per pokemon that has been defeated.
@@ -13,3 +13,17 @@ OBJECTIVE
                 - Players may skip and go straight to the BOSS pokemon when they are ready but this condition is only available if they were defeated.
 
 
+New Pokemon Objective:
+
+Use random pokemon and begin doing levels
+
+Example.
+
+Level 1: fight 5 random 'normal pokemon' and then boss
+Level 2: fight 5+2 more randmon pokemone then boss.
+and so on.
+
+
+~~~ Each Pokemon has there own health which can be altered depending on the level
+~~~ Each Pokemon has a weakness!
+~~~ Random Items to throw on Pokemon
