@@ -28,7 +28,7 @@ var displayScore = document.getElementById('score');
 var random = Math.floor(Math.random() * pokemonArray.length);
 
 image.setAttribute('src', pokemonArray[random].path);
-displayHP.textContent = currentHP;
+displayHP.textContent = 'Health: ' + currentHP;
 
 image.addEventListener('click', attackPokemon);
 
@@ -61,7 +61,7 @@ function actionMadeToPokemon() {
       nextPokemon();
     }
   }
-  displayHP.textContent = currentHP;
+  displayHP.textContent = 'Health: ' + currentHP;
 }
 
 function nextPokemon() {
@@ -77,7 +77,7 @@ function nextPokemon() {
     totalPoke = increasePoke;
     increasePoke = 0;
     currentHP = (10 + newHP);
-    displayHP.textContent = currentHP;
+    displayHP.textContent = 'Health: ' + currentHP;
     bossPokemon = true;
     return;
   } else {
@@ -89,13 +89,13 @@ function nextPokemon() {
 
 function addScore(score2) {
   score += score2;
-  displayScore.textContent = score;
+  displayScore.textContent = 'Score: ' + score;
 }
 
 function setUpgrade() {
   if (score >= 50 && upgrade === false) {
     score -= 50;
     upgrade = true;
-    displayScore.textContent = score;
+    displayScore.textContent = 'Score: ' + score;
   }
 }

@@ -1,13 +1,17 @@
 body
 {
-    background-color:black;
+  background-color: black;
+  width: 30%;
+  margin: auto;
 }
-
-p {
-    color:white;
+p, h1 {
+  color: white;
 }
-
-.inline {
-	display: inline-block;
-	width: 40%;
+/*.inline {
+  display: inline-block;
+  width: auto;
+}*/
+.image {
+  width: 50%;
+  height: 50%;
 }
