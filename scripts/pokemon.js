@@ -26,10 +26,10 @@ var image = document.getElementById('image');
 var pokeName = document.getElementById('pokeName');
 var displayHP = document.getElementById('currentHP');
 var displayScore = document.getElementById('score');
-var random = Math.floor(Math.random() * pokemonArray.length);
+var randomPoke = Math.floor(Math.random() * pokemonArray.length);
 
-image.setAttribute('src', pokemonArray[random].path);
-pokeName.textContent = pokemonArray[random].name;
+image.setAttribute('src', pokemonArray[randomPoke].path);
+pokeName.textContent = pokemonArray[randomPoke].name;
 displayHP.textContent = 'Health: ' + currentHP;
 
 image.addEventListener('click', attackPokemon);
@@ -69,7 +69,7 @@ function actionMadeToPokemon() {
 function nextPokemon() {
   increasePoke += 1;
   console.log('New Pokemon = ' + increasePoke);
-  var random = Math.floor(Math.random() * pokemonArray.length);
+  randomPoke = Math.floor(Math.random() * pokemonArray.length);
   //newHP += 1; // Uncomment this once the code is working as intended !!!
   //currentHP = newHP; // Uncomment this as well to update the newHP value !!! (May or may be broken again)
   if (totalPoke == increasePoke - 1) {
@@ -84,9 +84,9 @@ function nextPokemon() {
     bossPokemon = true;
     return;
   } else {
-    var random = Math.floor(Math.random() * pokemonArray.length);
-    image.setAttribute('src', pokemonArray[random].path);
-    pokeName.textContent = pokemonArray[random].name;
+    //var randomPoke = Math.floor(Math.random() * pokemonArray.length);
+    image.setAttribute('src', pokemonArray[randomPoke].path);
+    pokeName.textContent = pokemonArray[randomPoke].name;
     normalPokemon = true;
   }
 }
