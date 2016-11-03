@@ -7,6 +7,11 @@ var currentHP = newHP;
 var score = 0;
 var upgraded = false;
 
+var array = [
+    joe {name: "Joe", gender: "male"},
+    chris {name: "Chris", gender: "male"}
+]
+
 document.getElementById("currentHP").textContent = currentHP;
 
 document.getElementById("image").addEventListener("click", function(){
