@@ -1,0 +1,17 @@
+body
+{
+  background-color: black;
+  width: 30%;
+  margin: auto;
+}
+p, h1 {
+  color: white;
+}
+/*.inline {
+  display: inline-block;
+  width: auto;
+}*/
+.image {
+  width: 50%;
+  height: 50%;
+}
