@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, render: render  });
 
 var pokeArray = [
   {name: 'Aerodactyl', path: 'images/aerodactyl.png'},
@@ -11,7 +11,7 @@ var pokeArray = [
   {name: 'Rhydon', path: 'images/rhydon.png'},
   {name: 'Tauros', path: 'images/tauros.png'}
 ]
-var image2;
+var spriteImage;
 
 var bossArray = [
   {name: 'Lugia', path: 'images/lugia.png'}
@@ -27,22 +27,21 @@ var normalPoke = true;
 var bossPoke = false;
 var randomPoke = Math.floor(Math.random() * pokeArray.length);
 var text;
+var currentPokemonImage;
 
 function preload() {
-  image2 = game.load.image('lugia', pokeArray[randomPoke].path);
+  for (var i = 0; i < pokeArray.length; i++) {
+    console.log("Preload cache for image: " + pokeArray[i].name);
+    game.load.image(pokeArray[i].name, pokeArray[i].path);
+  }
 }
 function create() {
-  var image = game.add.sprite(game.world.centerX, game.world.centerY, 'lugia');
-  image.anchor.setTo(0.5);
-
-  image.inputEnabled = true;
-
+  spriteImage = game.add.sprite(200, 200, pokeArray[randomPoke].name);
+  spriteImage.anchor.setTo(0.5);
+  spriteImage.inputEnabled = true;
   text = game.add.text(250,16, '', { fill: '#ffffff'});
-
-  image.events.onInputDown.add(listener, this);
-
+  spriteImage.events.onInputDown.add(listener, this);
   text.text = 'Health: ' + currentHP;
-
 }
 
 function listener() {
@@ -80,8 +79,10 @@ function nextPoke() {
   console.log('New Pokemon = ' + increasePoke);
   randomPoke = Math.floor(Math.random() * pokeArray.length);
   if (totalPoke == increasePoke - 1) {
-    image2 = game.load.image('lugia', pokeArray[randomPoke].path);
-    var image = game.add.sprite(game.world.centerX, game.world.centerY, 'lugia');
+    var temp = pokeArray[randomPoke].name;
+    console.log(temp);
+    spriteImage.loadTexture(temp);
+    //var image = game.add.sprite(game.world.centerX, game.world.centerY, 'lugia');
     console.log('Boss Appears');
     totalPoke = increasePoke;
     increasePoke = 0;
@@ -90,8 +91,12 @@ function nextPoke() {
     bossPokemon = true;
     return;
   } else {
-    image2 = game.load.image('lugia', pokeArray[randomPoke].path);
-    var image = game.add.sprite(game.world.centerX, game.world.centerY, 'lugia');
+    var temp = pokeArray[randomPoke].name;
+    console.log(temp);
+    spriteImage.loadTexture(temp);
+    spriteImage.setTexture(temp);
+    //spriteImage.loadTexture(pokeArray[randomPoke].name);
+    //var image = game.add.sprite(game.world.centerX, game.world.centerY, 'lugia');
     normalPoke = true;
   }
 }
@@ -99,4 +104,8 @@ function nextPoke() {
 function addScore(score2) {
   score += score2;
   //displayScore.textContent = 'Score: ' + score;
+}
+
+function render() {
+    game.debug.body(currentPokemonImage);
 }
