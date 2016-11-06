@@ -46,6 +46,10 @@ function preload() {
   game.load.image('Lugia','assets/lugia.png'); // Boss
 }
 
+function destroySprite(sprite) {
+  sprite.destroy();
+}
+
 function create() {
   startScript();
 }
@@ -60,18 +64,19 @@ function startScript() {
   text.text = 'Health: ' + currentHP;
 }
 
-function attackPoke() {
+function attackPoke(pokemonImage) {
+  console.log(pokemonImage);
   if (upgrade) {
     currentHP -= 2;
-    actionPoke();
+    actionPoke(pokemonImage);
   }
   else {
     currentHP -= 1;
-    actionPoke();
+    actionPoke(pokemonImage);
   }
 }
 
-function actionPoke() {
+function actionPoke(pokemonImage) {
   if (currentHP <= 0) {
     if (normalPoke) {
       console.log('Pokemon Defeat! Next Pokemon!');
@@ -82,17 +87,17 @@ function actionPoke() {
       console.log('Boss Defeated! Next Pokemon!');
       addScore(110);
       bossPoke = false;
-      actionPoke();
+      actionPoke(pokemonImage);
     }
     else {
       currentHP = newHP;
-      nextPoke();
+      nextPoke(pokemonImage);
     }
   }
   text.text = 'Health: ' + currentHP;
 }
 
-function nextPoke() {
+function nextPoke(pokemonImage) {
   increasePoke += 1;
   console.log('New Pokemon = ' + increasePoke);
   randomPoke = Math.floor(Math.random() * pokeArray.length);
@@ -108,17 +113,22 @@ function nextPoke() {
   }
   else {
     //imgPoke.sprite.destroy(); // This is suppose to destroy?
-    changePoke();
+    changePoke(pokemonImage);
     normalPoke = true;
   }
 }
 
-function changePoke() {
+function changePoke(pokemonImage) {
+  //Removing pokemonImage
+  pokemonImage.destroy();
   var randomPoke = Math.floor(Math.random() * pokeArray.length);
   var imgPoke = pokeArray[randomPoke].name;
   var image = game.add.sprite(game.world.centerX, game.world.centerY, imgPoke);
   image.anchor.setTo(0.5);
   image.scale.set(0.5);
+  image.inputEnabled = true
+  image.events.onInputDown.add(attackPoke, this);
+  console.log(image);
 }
 
 function addScore(score2) {
