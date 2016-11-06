@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
+var game = new Phaser.Game(window.outerWidth, window.outerHeight, Phaser.AUTO, '', { preload: preload, create: create });
 
 var pokeArray = [
   {name: 'Aerodactyl', path: 'assets/aerodactyl.png'},
@@ -120,7 +120,12 @@ function nextPoke(pokemonImage) {
 
 function changePoke(pokemonImage) {
   //Removing pokemonImage
-  pokemonImage.destroy();
+  try {
+   pokemonImage.destroy();
+ } catch(error) {
+   console.log("Could not remove old pokemon from view, 'pokemonImage' undefined");
+   console.log(error);
+ }
   var randomPoke = Math.floor(Math.random() * pokeArray.length);
   var imgPoke = pokeArray[randomPoke].name;
   var image = game.add.sprite(game.world.centerX, game.world.centerY, imgPoke);
