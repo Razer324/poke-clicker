@@ -1,19 +1,19 @@
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create });
 
 var pokeArray = [
-  {name: 'Aerodactyl', path: 'images/aerodactyl.png'},
-  {name: 'Alakazam', path: 'images/alakazam.png'},
-  {name: 'Gyarados', path: 'images/gyarados.png'},
-  {name: 'Kabutops', path: 'images/kabutops.png'},
-  {name: 'Kangaskhan', path: 'images/kangaskhan.png'},
-  {name: 'Machamp', path: 'images/machamp.png'},
-  {name: 'Onix', path: 'images/onix.png'},
-  {name: 'Rhydon', path: 'images/rhydon.png'},
-  {name: 'Tauros', path: 'images/tauros.png'}
+  {name: 'Aerodactyl', path: 'assets/aerodactyl.png'},
+  {name: 'Alakazam', path: 'assets/alakazam.png'},
+  {name: 'Gyarados', path: 'assets/gyarados.png'},
+  {name: 'Kabutops', path: 'assets/kabutops.png'},
+  {name: 'Kangaskhan', path: 'assets/kangaskhan.png'},
+  {name: 'Machamp', path: 'assets/machamp.png'},
+  {name: 'Onix', path: 'assets/onix.png'},
+  {name: 'Rhydon', path: 'assets/rhydon.png'},
+  {name: 'Tauros', path: 'assets/tauros.png'}
 ]
 
 var bossArray = [
-  {name: 'Lugia', path: 'images/lugia.png'}
+  {name: 'Lugia', path: 'assets/lugia.png'}
 ];
 
 var increasePoke = 0;
@@ -24,18 +24,22 @@ var score = 0;
 var upgrade = false;
 var normalPoke = true;
 var bossPoke = false;
-//var randomPoke = Math.floor(Math.random() * pokeArray.length);
+var randomPoke = Math.floor(Math.random() * pokeArray.length);
 var text;
 var i = 0;
-//var imgPoke = pokeArray[i].name;
-
+var imgPoke = pokeArray[randomPoke].name;
 
 function preload() {
-  game.load.image('test', pokeArray[0].path);
-  // for (var i = 0; i < pokeArray[i]; i++) {
-  //   console.log('Test: ' + pokeArray[i]);
-  //   game.load.image('test', pokeArray[i].path);
-  // }
+  game.load.image('Aerodactyl','assets/aerodactyl.png');
+  game.load.image('Alakazam','assets/alakazam.png');
+  game.load.image('Gyarados','assets/gyarados.png');
+  game.load.image('Kabutops','assets/kabutops.png');
+  game.load.image('Kangaskhan','assets/kangaskhan.png');
+  game.load.image('Machamp','assets/machamp.png');
+  game.load.image('Onix','assets/onix.png');
+  game.load.image('Rhydon','assets/rhydon.png');
+  game.load.image('Tauros','assets/tauros.png');
+  game.load.image('Lugia','assets/lugia.png'); // Boss
 }
 
 function create() {
@@ -43,7 +47,7 @@ function create() {
 }
 
 function startScript() {
-  var image = game.add.sprite(game.world.centerX, game.world.centerY, 'test');
+  var image = game.add.sprite(game.world.centerX, game.world.centerY, imgPoke);
   image.anchor.setTo(0.5);
   image.scale.set(0.5);
   image.inputEnabled = true;
@@ -89,6 +93,7 @@ function nextPoke() {
   console.log('New Pokemon = ' + increasePoke);
   randomPoke = Math.floor(Math.random() * pokeArray.length);
   if (totalPoke == increasePoke - 1) {
+    changePoke();
     console.log('Boss Appears');
     totalPoke = increasePoke;
     increasePoke = 0;
@@ -98,8 +103,18 @@ function nextPoke() {
     return;
   }
   else {
+    //imgPoke.sprite.destroy(); // This is suppose to destroy?
+    changePoke();
     normalPoke = true;
   }
+}
+
+function changePoke() {
+  var randomPoke = Math.floor(Math.random() * pokeArray.length);
+  var imgPoke = pokeArray[randomPoke].name;
+  var image = game.add.sprite(game.world.centerX, game.world.centerY, imgPoke);
+  image.anchor.setTo(0.5);
+  image.scale.set(0.5);
 }
 
 function addScore(score2) {
