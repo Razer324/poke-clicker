@@ -46,9 +46,9 @@ function preload() {
   game.load.image('Lugia','assets/lugia.png'); // Boss
 }
 
-function destroySprite(sprite) {
-  sprite.destroy();
-}
+// function destroySprite(sprite) {
+//   sprite.destroy();
+// }
 
 function create() {
   startScript();
@@ -102,7 +102,7 @@ function nextPoke(pokemonImage) {
   console.log('New Pokemon = ' + increasePoke);
   randomPoke = Math.floor(Math.random() * pokeArray.length);
   if (totalPoke == increasePoke - 1) {
-    changePoke();
+    changePoke(pokemonImage);
     console.log('Boss Appears');
     totalPoke = increasePoke;
     increasePoke = 0;
