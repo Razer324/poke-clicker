@@ -30,19 +30,15 @@ var i = 0;
 var imgPoke = pokeArray[randomPoke].name;
 
 function preload() {
-  for (var i = 0; i < pokeArray.length; i++) {
-    console.log("Preload cache for image: " + pokeArray[i].name);
-    game.load.image(pokeArray[i].name, pokeArray[i].path);
-  }
-  // game.load.image('Aerodactyl','assets/aerodactyl.png');
-  // game.load.image('Alakazam','assets/alakazam.png');
-  // game.load.image('Gyarados','assets/gyarados.png');
-  // game.load.image('Kabutops','assets/kabutops.png');
-  // game.load.image('Kangaskhan','assets/kangaskhan.png');
-  // game.load.image('Machamp','assets/machamp.png');
-  // game.load.image('Onix','assets/onix.png');
-  // game.load.image('Rhydon','assets/rhydon.png');
-  // game.load.image('Tauros','assets/tauros.png');
+  game.load.image('Aerodactyl','assets/aerodactyl.png');
+  game.load.image('Alakazam','assets/alakazam.png');
+  game.load.image('Gyarados','assets/gyarados.png');
+  game.load.image('Kabutops','assets/kabutops.png');
+  game.load.image('Kangaskhan','assets/kangaskhan.png');
+  game.load.image('Machamp','assets/machamp.png');
+  game.load.image('Onix','assets/onix.png');
+  game.load.image('Rhydon','assets/rhydon.png');
+  game.load.image('Tauros','assets/tauros.png');
   game.load.image('Lugia','assets/lugia.png'); // Boss
 }
 
