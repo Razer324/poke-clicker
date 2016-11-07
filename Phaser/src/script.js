@@ -35,6 +35,8 @@ function preload() {
     var loopingImage = game.load.image(pokeArray[i].name, pokeArray[i].path);
   }
   game.load.image('Lugia','assets/lugia.png'); // Boss
+  game.load.spritesheet('explosion', 'assets/sprites/explosion_1.png', 256, 128, 12);
+
 }
 
 function create() {
@@ -106,21 +108,36 @@ function nextPoke(pokemonImage) {
 function changePoke(pokemonImage) {
   //Removing pokemonImage
   try {
-   pokemonImage.destroy();
+    //Try and amiamnte pokemon to explode before removing.
+    console.log(pokemonImage);
+    var explosion = game.add.sprite(window.outerWidth / 2, window.outerHeight / 2, 'explosion');
+    var anim = explosion.animations.add('boom');
+    explosion.width = (window.outerWidth / 2);
+    explosion.height = (window.outerHeight / 2);
+    explosion.anchor.setTo(0.5);
+    explosion.loop = false;
+    anim.killOnComplete = true;
+    explosion.animations.play('boom', 30, false);
+    explosion.events.onAnimationComplete.add(function(){
+      pokemonImage.destroy();
+      var randomPoke = Math.floor(Math.random() * pokeArray.length);
+      var imgPoke = pokeArray[randomPoke].name;
+      var image = game.add.sprite(game.world.centerX, game.world.centerY, imgPoke);
+      var ratio = image.width / image.height;
+      image.width = (window.outerWidth / 2) / ratio;
+      image.height = (window.outerHeight / 2) * ratio;
+      image.anchor.setTo(0.5);
+      image.inputEnabled = true
+      image.events.onInputDown.add(attackPoke, this);
+      console.log(image);
+    })
+    //pokemonImage.anchor.setTo(0.5, 0.5);
+
+
  } catch(error) {
    console.log("Could not remove old pokemon from view, 'pokemonImage' undefined");
    console.log(error);
  }
-  var randomPoke = Math.floor(Math.random() * pokeArray.length);
-  var imgPoke = pokeArray[randomPoke].name;
-  var image = game.add.sprite(game.world.centerX, game.world.centerY, imgPoke);
-  var ratio = image.width / image.height;
-  image.width = (window.outerWidth / 2) / ratio;
-  image.height = (window.outerHeight / 2) * ratio;
-  image.anchor.setTo(0.5);
-  image.inputEnabled = true
-  image.events.onInputDown.add(attackPoke, this);
-  console.log(image);
 }
 
 function addScore(score2) {
