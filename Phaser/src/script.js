@@ -131,9 +131,6 @@ function changePoke(pokemonImage) {
       image.events.onInputDown.add(attackPoke, this);
       console.log(image);
     })
-    //pokemonImage.anchor.setTo(0.5, 0.5);
-
-
  } catch(error) {
    console.log("Could not remove old pokemon from view, 'pokemonImage' undefined");
    console.log(error);
