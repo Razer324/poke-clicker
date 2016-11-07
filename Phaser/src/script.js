@@ -32,23 +32,10 @@ var imgPoke = pokeArray[randomPoke].name;
 function preload() {
   for (var i = 0; i < pokeArray.length; i++) {
     console.log("Preload cache for image: " + pokeArray[i].name);
-    game.load.image(pokeArray[i].name, pokeArray[i].path);
+    var loopingImage = game.load.image(pokeArray[i].name, pokeArray[i].path);
   }
-  // game.load.image('Aerodactyl','assets/aerodactyl.png');
-  // game.load.image('Alakazam','assets/alakazam.png');
-  // game.load.image('Gyarados','assets/gyarados.png');
-  // game.load.image('Kabutops','assets/kabutops.png');
-  // game.load.image('Kangaskhan','assets/kangaskhan.png');
-  // game.load.image('Machamp','assets/machamp.png');
-  // game.load.image('Onix','assets/onix.png');
-  // game.load.image('Rhydon','assets/rhydon.png');
-  // game.load.image('Tauros','assets/tauros.png');
   game.load.image('Lugia','assets/lugia.png'); // Boss
 }
-
-// function destroySprite(sprite) {
-//   sprite.destroy();
-// }
 
 function create() {
   startScript();
@@ -57,7 +44,6 @@ function create() {
 function startScript() {
   var image = game.add.sprite(game.world.centerX, game.world.centerY, imgPoke);
   image.anchor.setTo(0.5);
-  image.scale.set(0.5);
   image.inputEnabled = true;
   text = game.add.text(250,16, '', { fill: '#ffffff'});
   image.events.onInputDown.add(attackPoke, this);
@@ -112,7 +98,6 @@ function nextPoke(pokemonImage) {
     return;
   }
   else {
-    //imgPoke.sprite.destroy(); // This is suppose to destroy?
     changePoke(pokemonImage);
     normalPoke = true;
   }
@@ -129,8 +114,10 @@ function changePoke(pokemonImage) {
   var randomPoke = Math.floor(Math.random() * pokeArray.length);
   var imgPoke = pokeArray[randomPoke].name;
   var image = game.add.sprite(game.world.centerX, game.world.centerY, imgPoke);
+  var ratio = image.width / image.height;
+  image.width = (window.outerWidth / 2) / ratio;
+  image.height = (window.outerHeight / 2) * ratio;
   image.anchor.setTo(0.5);
-  image.scale.set(0.5);
   image.inputEnabled = true
   image.events.onInputDown.add(attackPoke, this);
   console.log(image);
